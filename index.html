@@ -1,0 +1,164 @@
+<!DOCTYPE html> <!-- Define que el documento es de tipo HTML5 -->
+<html lang="es"> <!-- Inicia la estructura HTML e indica que el idioma es español -->
+<head> <!-- Contiene los metadatos y configuraciones de la página -->
+  <meta charset="UTF-8"> <!-- Establece la codificación de caracteres UTF-8 para acentos y eñes -->
+  <title>Mi Red Social Renovada</title> <!-- Define el título que aparece en la pestaña del navegador -->
+  <style> /* Abre el bloque de estilos CSS internos */
+    * { /* Selector universal que aplica reglas a todos los elementos */
+      margin: 2px; /* Cambia el margen exterior universal a 2 píxeles */
+      padding: 2px; /* Cambia el relleno interior universal a 2 píxeles */
+      box-sizing: content-box; /* Cambia el modelo de caja a content-box */
+    } /* Cierra el selector universal */
+    body { /* Estiliza el cuerpo principal de la página */
+      font-family: 'Georgia', serif; /* Cambia la tipografía a Georgia */
+      background: #1a1a2e; /* Cambia el fondo claro a un azul oscuro nocturno */
+      color: #eaeaea; /* Agrega color de texto claro por defecto para toda la página */
+    } /* Cierra el selector body */
+    .topbar { /* Estiliza la barra de navegación superior */
+      display: grid; /* Cambia el diseño flex por una cuadrícula grid */
+      grid-template-columns: 1fr auto; /* Divide la barra en dos columnas proporcionales */
+      align-items: end; /* Alinea los elementos hacia la parte inferior */
+      background: #e94560; /* Cambia el fondo azul original a rojo coral vibrante */
+      color: #fff3cd; /* Cambia el texto blanco puro a crema suave */
+      padding: 1.5rem 3rem; /* Aumenta el relleno interno de la barra */
+      border-bottom: 4px solid #ffd369; /* Agrega un borde inferior dorado */
+    } /* Cierra el selector .topbar */
+    .usuario { /* Estiliza el saludo del usuario en la barra */
+      font-weight: normal; /* Cambia el grosor de negrita a normal */
+      font-style: italic; /* Agrega estilo de letra cursiva */
+      letter-spacing: 1px; /* Agrega espaciado entre letras */
+    } /* Cierra el selector .usuario */
+    .feed { /* Estiliza el contenedor principal de publicaciones */
+      max-width: 750px; /* Aumenta el ancho máximo de 600px a 750px */
+      margin: 3rem auto; /* Aumenta el margen superior e inferior a 3rem */
+      display: flex; /* Mantiene el contenedor flexible */
+      flex-direction: column-reverse; /* Invierte el orden visual de las publicaciones */
+      gap: 2rem; /* Duplica la separación entre tarjetas a 2rem */
+    } /* Cierra el selector .feed */
+    .publicacion { /* Estiliza cada tarjeta de publicación */
+      background: #16213e; /* Cambia el fondo blanco de tarjeta a azul marino */
+      border-radius: 18px; /* Aumenta la curvatura de las esquinas a 18px */
+      padding: 1.8rem; /* Aumenta el relleno interno de la tarjeta */
+      box-shadow: 0 6px 15px rgba(233, 69, 96, 0.35); /* Cambia la sombra a un resplandor rojizo */
+      border: 1px solid #0f3460; /* Agrega un borde sutil alrededor de la tarjeta */
+    } /* Cierra el selector .publicacion */
+    .autor { /* Estiliza la cabecera del autor en cada publicación */
+      display: flex; /* Mantiene alineación horizontal flexible */
+      align-items: flex-start; /* Alinea los elementos en la parte superior */
+      gap: 1rem; /* Duplica el espacio entre el avatar y el nombre */
+      margin-bottom: 1rem; /* Aumenta el margen inferior a 1rem */
+    } /* Cierra el selector .autor */
+    .autor img { /* Estiliza la imagen de perfil del autor */
+      width: 55px; /* Aumenta el ancho del avatar de 40px a 55px */
+      height: 55px; /* Aumenta el alto del avatar de 40px a 55px */
+      border-radius: 15%; /* Cambia la forma circular (50%) a cuadrado redondeado (15%) */
+      object-fit: contain; /* Cambia el ajuste de imagen de cover a contain */
+      border: 2px solid #ffd369; /* Agrega un marco dorado al avatar */
+    } /* Cierra el selector .autor img */
+    .media-post { /* Nueva clase CSS para las imágenes dentro de las publicaciones */
+      width: 100%; /* Hace que la imagen ocupe todo el ancho disponible */
+      max-height: 320px; /* Limita la altura máxima de la foto */
+      object-fit: cover; /* Recorta proporcionalmente la imagen sin deformarla */
+      border-radius: 12px; /* Redondea las esquinas de la fotografía */
+      margin-top: 0.8rem; /* Agrega separación superior respecto al texto */
+    } /* Cierra el selector .media-post */
+    .audio-post, .video-post { /* Nueva clase CSS para reproductores de audio y video */
+      width: 100%; /* Ajusta el ancho completo del reproductor */
+      margin-top: 0.8rem; /* Agrega espacio superior */
+      border-radius: 10px; /* Suaviza los bordes del reproductor */
+    } /* Cierra el selector .audio-post, .video-post */
+    .acciones { /* Estiliza la barra de botones inferiores de cada post */
+      display: flex; /* Mantiene los botones en fila */
+      gap: 2rem; /* Duplica el espacio entre botones */
+      margin-top: 1.2rem; /* Aumenta el margen superior */
+      border-top: 2px dashed #e94560; /* Cambia la línea sólida gris por una punteada roja */
+      padding-top: 1rem; /* Aumenta el espacio interior superior */
+    } /* Cierra el selector .acciones */
+    .acciones button { /* Estiliza los botones de interacción */
+      background: #0f3460; /* Cambia el fondo transparente a azul profundo */
+      border: 1px solid #ffd369; /* Agrega un borde dorado al botón */
+      border-radius: 8px; /* Redondea las esquinas del botón */
+      padding: 0.4rem 0.8rem; /* Agrega relleno interno al botón */
+      color: #ffd369; /* Cambia el color del texto a dorado */
+      cursor: grab; /* Cambia el puntero a mano de agarre */
+      font-size: 1.05rem; /* Aumenta el tamaño de fuente a 1.05rem */
+    } /* Cierra el selector .acciones button */
+    .acciones button:hover { /* Estiliza el botón al pasar el cursor encima */
+      text-decoration: overline; /* Cambia el subrayado inferior por línea superior */
+      background: #e94560; /* Cambia el fondo al pasar el ratón */
+    } /* Cierra el selector .acciones button:hover */
+    .pie-pagina { /* Nueva clase CSS para el pie de página */
+      text-align: center; /* Centra el texto del pie de página */
+      padding: 1.5rem; /* Agrega relleno alrededor del texto */
+      background: #0f3460; /* Define un fondo azul oscuro */
+      color: #ffd369; /* Define color de texto dorado */
+      margin-top: 2rem; /* Separa el pie de página del contenido superior */
+    } /* Cierra el selector .pie-pagina */
+  </style> <!-- Cierra el bloque de estilos CSS -->
+</head> <!-- Cierra la cabecera del documento -->
+<body> <!-- Inicia el contenido visible de la página web -->
+  <header class="topbar"> <!-- Barra superior de encabezado -->
+    <h1>Conecta Nocturno</h1> <!-- Título principal de la red social -->
+    <div class="usuario">Bienvenida, Ana</div> <!-- Muestra el nombre del usuario activo -->
+  </header> <!-- Cierra el encabezado superior -->
+
+  <main class="feed"> <!-- Contenedor principal donde se muestran las publicaciones -->
+    <article class="publicacion"> <!-- Primera tarjeta de publicación -->
+      <div class="autor"> <!-- Contenedor de datos del autor -->
+        <!-- Recurso visual 1: Imagen de avatar desde un servicio público -->
+        <img src="https://picsum.photos/id/1005/100/100" alt="Avatar de Luis"> <!-- Foto de perfil de Luis -->
+        <strong>Luis</strong> <!-- Nombre del autor en negrita -->
+      </div> <!-- Cierra el contenedor del autor -->
+      <p>¡Hoy es un gran día para programar y escuchar música!</p> <!-- Texto de la publicación -->
+      <!-- Recurso visual 2: Imagen principal de la publicación -->
+      <img class="media-post" src="https://picsum.photos/id/180/600/300" alt="Espacio de trabajo"> <!-- Fotografía de laptop -->
+      <!-- Recurso visual 3: Elemento de audio reproducible -->
+      <audio class="audio-post" controls> <!-- Reproductor de audio con controles -->
+        <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg"> <!-- Archivo de audio MP3 -->
+      </audio> <!-- Cierra el reproductor de audio -->
+      <div class="acciones"> <!-- Contenedor de botones de interacción -->
+        <button>👍 Me gusta (12)</button> <!-- Botón para dar Me gusta -->
+        <button>💬 Comentar</button> <!-- Botón para comentar -->
+        <button>🔁 Compartir</button> <!-- Botón adicional para compartir -->
+      </div> <!-- Cierra el contenedor de acciones -->
+    </article> <!-- Cierra la primera publicación -->
+
+    <article class="publicacion"> <!-- Segunda tarjeta de publicación -->
+      <div class="autor"> <!-- Contenedor de datos de la autora -->
+        <!-- Recurso visual 4: Imagen de avatar de María -->
+        <img src="https://picsum.photos/id/1011/100/100" alt="Avatar de María"> <!-- Foto de perfil de María -->
+        <strong>María</strong> <!-- Nombre de la autora en negrita -->
+      </div> <!-- Cierra el contenedor del autor -->
+      <p>Compartiendo el video de mi nuevo proyecto audiovisual.</p> <!-- Texto de la publicación -->
+      <!-- Recurso visual 5: Elemento de video reproducible -->
+      <video class="video-post" controls> <!-- Reproductor de video con controles -->
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"> <!-- Archivo de video MP4 -->
+      </video> <!-- Cierra el reproductor de video -->
+      <div class="acciones"> <!-- Contenedor de botones de interacción -->
+        <button>👍 Me gusta (5)</button> <!-- Botón para dar Me gusta -->
+        <button>💬 Comentar</button> <!-- Botón para comentar -->
+        <button>🔁 Compartir</button> <!-- Botón adicional para compartir -->
+      </div> <!-- Cierra el contenedor de acciones -->
+    </article> <!-- Cierra la segunda publicación -->
+
+    <article class="publicacion"> <!-- Tercera tarjeta de publicación adicional -->
+      <div class="autor"> <!-- Contenedor de datos del tercer autor -->
+        <!-- Recurso visual 6: Imagen de avatar de Carlos -->
+        <img src="https://picsum.photos/id/1025/100/100" alt="Avatar de Carlos"> <!-- Foto de perfil de Carlos -->
+        <strong>Carlos</strong> <!-- Nombre del autor en negrita -->
+      </div> <!-- Cierra el contenedor del autor -->
+      <p>Disfrutando de la naturaleza este fin de semana.</p> <!-- Texto de la publicación -->
+      <!-- Recurso visual 7: Fotografía de paisaje -->
+      <img class="media-post" src="https://picsum.photos/id/1015/600/300" alt="Paisaje natural"> <!-- Imagen de río y montañas -->
+      <div class="acciones"> <!-- Contenedor de botones de interacción -->
+        <button>👍 Me gusta (24)</button> <!-- Botón para dar Me gusta -->
+        <button>💬 Comentar</button> <!-- Botón para comentar -->
+      </div> <!-- Cierra el contenedor de acciones -->
+    </article> <!-- Cierra la tercera publicación -->
+  </main> <!-- Cierra el contenedor principal feed -->
+
+  <footer class="pie-pagina"> <!-- Pie de página añadido al documento -->
+    <p>Proyecto Web Modificado - Todos los derechos reservados 2026</p> <!-- Texto informativo del pie -->
+  </footer> <!-- Cierra el pie de página -->
+</body> <!-- Cierra el cuerpo de la página -->
+</html> <!-- Finaliza el documento HTML -->
